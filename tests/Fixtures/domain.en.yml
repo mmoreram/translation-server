@@ -1,0 +1,14 @@
+example:
+    subdomain:
+        key: value
+        key2: value2
+    another:
+        subdomain:
+            key3: value3
+    last:
+        one: super1
+example2:
+    even:
+        another:
+            subdomain:
+                key4: value4

@@ -1,0 +1,7 @@
+/vendor
+/bin/*
+!/bin/compile
+!/bin/translation-server
+composer.phar
+composer.lock
+phpunit.xml
