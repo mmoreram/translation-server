@@ -22,10 +22,12 @@
         "symfony/event-dispatcher": "^2.7",
         "symfony/property-access": "^2.7",
 
-        "elcodi/core": "^1.0.2"
+        "elcodi/core": "^1.0.2",
+        "stichoza/google-translate-php": "^3.1"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "1.4.2",
+        "mmoreram/php-formatter": "1.0.4",
         "phpunit/phpunit": "4.5.0"
     },
     "bin": [

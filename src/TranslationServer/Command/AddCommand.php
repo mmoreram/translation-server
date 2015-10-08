@@ -125,7 +125,7 @@ class AddCommand extends AbstractTranslationServerCommand
      * @param array $structure Structure
      * @param mixed $value     Value
      */
-    private function overwriteLastValueFromStructure(
+    protected function overwriteLastValueFromStructure(
         array &$structure,
         $value
     ) {

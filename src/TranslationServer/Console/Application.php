@@ -49,6 +49,7 @@ class Application extends BaseApplication
         $commands[] = new Command\MetricsCommand();
         $commands[] = new Command\AddCommand();
         $commands[] = new Command\SortCommand();
+        $commands[] = new Command\GuessCommand();
 
         return $commands;
     }

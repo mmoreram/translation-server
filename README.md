@@ -242,6 +242,31 @@ $ translation-server translation:server:add --language eu --domain routes
 As soon as the value is saved, the system will ask for another translation. As
 long as you don't press *Ctrl+C*, the system will do it once and again.
 
+### Guessing missing translations
+
+For lazy people, you can even translate your site using Google Analytics. Of
+course we strongly recommend you to use this feature carefully, with a post
+checking of the results.
+
+``` bash
+$ translation-server translation:server:guess --language eu
+
+[Trans Server] Command started at Thu, 08 Oct 2015 00:59:43 +0200
+[Trans Server] Language : eu
+[Trans Server] Key : store_cart_nav
+[Trans Server] Original : /cart/nav
+[Trans Server] Translation : /saskia/nab
+```
+
+The command will start guessing your missing translations until you decide to
+stop with *Ctrl+C*.
+
+This project uses the library
+[Stichoza/google-translate-php](https://github.com/Stichoza/google-translate-php).
+Easy and simple. Big kudos!
+
+Of course, you can filter by language and domain.
+
 ### Sorting your translations
 
 You can sort all your translations as well, just using this great command.

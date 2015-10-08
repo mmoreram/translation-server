@@ -239,7 +239,12 @@ EOF;
             ->name('*.php')
             ->exclude('Tests')
             ->in(realpath($vendorPath.'symfony/'))
-            ->in(realpath($vendorPath.'elcodi/'));
+            ->in(realpath($vendorPath.'doctrine/'))
+            ->in(realpath($vendorPath.'elcodi/'))
+            ->in(realpath($vendorPath.'guzzlehttp/'))
+            ->in(realpath($vendorPath.'react/'))
+            ->in(realpath($vendorPath.'phpunit/'))
+            ->in(realpath($vendorPath.'stichoza/'));
 
         foreach ($finder as $file) {
             $this->addFile($phar, $file);
@@ -267,6 +272,7 @@ EOF;
             ->addFile($phar, new \SplFileInfo($vendorPath.'composer/autoload_namespaces.php'))
             ->addFile($phar, new \SplFileInfo($vendorPath.'composer/autoload_psr4.php'))
             ->addFile($phar, new \SplFileInfo($vendorPath.'composer/autoload_classmap.php'))
+            ->addFile($phar, new \SplFileInfo($vendorPath.'composer/autoload_files.php'))
             ->addFile($phar, new \SplFileInfo($vendorPath.'composer/autoload_real.php'))
             ->addFile($phar, new \SplFileInfo($vendorPath.'composer/ClassLoader.php'));
 
