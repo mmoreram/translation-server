@@ -16,10 +16,11 @@
 namespace Mmoreram\TranslationServer\Command;
 
 use Exception;
-use Mmoreram\TranslationServer\Model\Translation;
 use Stichoza\GoogleTranslate\TranslateClient;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
+use Mmoreram\TranslationServer\Model\Translation;
 
 /**
  * Class GuessCommand

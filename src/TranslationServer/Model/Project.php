@@ -16,10 +16,11 @@
 namespace Mmoreram\TranslationServer\Model;
 
 use Exception;
+use Symfony\Component\Finder\Finder;
+
 use Mmoreram\TranslationServer\Model\Abstracts\RepositoryAccessible;
 use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
-use Symfony\Component\Finder\Finder;
 
 /**
  * Class Project
