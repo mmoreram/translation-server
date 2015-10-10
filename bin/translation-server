@@ -14,7 +14,7 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
-require __DIR__ . '/../src/bootstrap.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Mmoreram\TranslationServer\Console\Application;
 
