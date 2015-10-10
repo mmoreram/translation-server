@@ -15,8 +15,9 @@
 
 namespace Mmoreram\TranslationServer\Console;
 
-use Mmoreram\TranslationServer\Command;
 use Symfony\Component\Console\Application as BaseApplication;
+
+use Mmoreram\TranslationServer\Command;
 
 /**
  * Class Application

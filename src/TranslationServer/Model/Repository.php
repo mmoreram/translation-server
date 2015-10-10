@@ -15,11 +15,12 @@
 
 namespace Mmoreram\TranslationServer\Model;
 
+use Symfony\Component\Yaml\Dumper as YamlDumper;
+use Symfony\Component\Yaml\Parser as YamlParser;
+
 use Mmoreram\TranslationServer\Model\Abstracts\TranslationAccessible;
 use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
-use Symfony\Component\Yaml\Dumper as YamlDumper;
-use Symfony\Component\Yaml\Parser as YamlParser;
 
 /**
  * Class Repository

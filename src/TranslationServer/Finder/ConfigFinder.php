@@ -16,8 +16,9 @@
 namespace Mmoreram\TranslationServer\Finder;
 
 use Exception;
-use Mmoreram\TranslationServer\TranslationServer;
 use Symfony\Component\Yaml\Parser as YamlParser;
+
+use Mmoreram\TranslationServer\TranslationServer;
 
 /**
  * Class ConfigFinder

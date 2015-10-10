@@ -16,11 +16,12 @@
 namespace Mmoreram\TranslationServer\Command\Abstracts;
 
 use Elcodi\Component\Core\Command\Abstracts\AbstractElcodiCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+
 use Mmoreram\TranslationServer\Finder\ConfigFinder;
 use Mmoreram\TranslationServer\Loader\ConfigLoader;
 use Mmoreram\TranslationServer\Model\Project;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Class AbstractTranslationServerCommand
