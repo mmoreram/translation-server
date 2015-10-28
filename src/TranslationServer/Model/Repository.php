@@ -105,7 +105,7 @@ class Repository
         self::createPlainRepresentationByArray(
             $translations,
             $language,
-            $data,
+            ($data) ? $data : [],
             $emptyArray,
             ''
         );
