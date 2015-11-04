@@ -38,7 +38,7 @@ class Application extends BaseApplication
             date_default_timezone_set(@date_default_timezone_get());
         }
 
-        parent::__construct('TranslationServer');
+        parent::__construct('TranslationServer', '@package_version@');
     }
 
     /**
@@ -51,6 +51,10 @@ class Application extends BaseApplication
         $commands[] = new Command\AddCommand();
         $commands[] = new Command\SortCommand();
         $commands[] = new Command\GuessCommand();
+
+        if ('phar://' === substr(__DIR__, 0, 7)) {
+            $commands[] = new Command\SelfUpdateCommand();
+        }
 
         return $commands;
     }

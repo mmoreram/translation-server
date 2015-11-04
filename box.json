@@ -1,0 +1,41 @@
+{
+    "algorithm": "SHA1",
+    "alias": "translation-server.phar",
+    "banner": "This file is part of the translation-server package\n\nCopyright (c) 2015 Marc Morera\n\nFor the full copyright and license information, please view the LICENSE\nfile that was distributed with this source code.\n\nFeel free to edit as you please, and have fun.\n\n@author Marc Morera <yuhu@mmoreram.com>",
+    "chmod": "0755",
+    "compactors": [
+        "Herrera\\Box\\Compactor\\Json",
+        "Herrera\\Box\\Compactor\\Php"
+    ],
+    "directories": "src",
+    "extract": true,
+    "files": [
+        "LICENSE",
+        "vendor/autoload.php",
+        "vendor/composer/installed.json",
+        "vendor/composer/LICENSE"
+    ],
+    "finder": [
+        {
+            "exclude": [
+                "tests",
+                "Tests"
+            ],
+            "in": [
+                "vendor",
+                "vendor/doctrine",
+                "vendor/elcodi",
+                "vendor/guzzlehttp",
+                "vendor/phpunit",
+                "vendor/react",
+                "vendor/stichoza",
+                "vendor/symfony"
+            ],
+            "name": "*.php"
+        }
+    ],
+    "git-version": "package_version",
+    "main": "bin/translation-server",
+    "output": "translation-server.phar",
+    "stub": true
+}
