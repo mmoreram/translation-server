@@ -27,7 +27,6 @@
                 "vendor/elcodi",
                 "vendor/guzzlehttp",
                 "vendor/phpunit",
-                "vendor/react",
                 "vendor/stichoza",
                 "vendor/symfony"
             ],
@@ -36,6 +35,6 @@
     ],
     "git-version": "package_version",
     "main": "bin/translation-server",
-    "output": "translation-server.phar",
+    "output": "build/translation-server.phar",
     "stub": true
 }
