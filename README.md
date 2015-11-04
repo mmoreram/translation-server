@@ -244,7 +244,7 @@ long as you don't press *Ctrl+C*, the system will do it once and again.
 
 ### Guessing missing translations
 
-For lazy people, you can even translate your site using Google Analytics. Of
+For lazy people, you can even translate your site using Google Translate. Of
 course we strongly recommend you to use this feature carefully, with a post
 checking of the results.
 
