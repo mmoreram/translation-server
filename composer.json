@@ -13,21 +13,21 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
-        "symfony/console": "^2.7",
-        "symfony/process": "^2.7",
-        "symfony/finder": "^2.7",
-        "symfony/filesystem": "^2.7",
-        "symfony/yaml": "^2.7",
-        "symfony/event-dispatcher": "^2.7",
-        "symfony/property-access": "^2.7",
+        "php": "^5.4|^7.0",
+        "symfony/console": "^2.7|^3.0",
+        "symfony/process": "^2.7|^3.0",
+        "symfony/finder": "^2.7|^3.0",
+        "symfony/filesystem": "^2.7|^3.0",
+        "symfony/yaml": "^2.7|^3.0",
+        "symfony/event-dispatcher": "^2.7|^3.0",
+        "symfony/property-access": "^2.7|^3.0",
 
         "elcodi/core": "^1.0.2",
         "stichoza/google-translate-php": "^3.1"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "1.4.2",
-        "mmoreram/php-formatter": "1.0.4",
+        "mmoreram/php-formatter": "1.1.0",
         "phpunit/phpunit": "4.5.0"
     },
     "bin": [
