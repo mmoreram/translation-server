@@ -69,7 +69,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
         foreach ($metrics as $language => $percentFinished) {
             $languageTranslations = $metrics[$language];
             $languageTranslationsMissing = $masterLanguageKeys - $languageTranslations;
-            $languageCompleted = round((100 / $masterLanguageKeys) * $languageTranslations, 2);
+            $languageCompleted = ($masterLanguageKeys) ? round((100 / $masterLanguageKeys) * $languageTranslations, 2) : 0;
             $this
                 ->printMessage(
                     $output,
