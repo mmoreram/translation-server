@@ -23,6 +23,11 @@ use Mmoreram\TranslationServer\Model\Project;
 class MetricsLoader
 {
     /**
+     * @var array
+     */
+    private $missingTranslationsPerLanguage = [];
+
+    /**
      * Get total metrics given a Project.
      *
      * The format is that one
@@ -70,10 +75,20 @@ class MetricsLoader
                 $masterKeys
             );
 
+            $this->missingTranslationsPerLanguage[$language] = array_diff($masterKeys, $languageKeys);
             $metrics[$language] = count($existentLanguageTranslations);
         }
         arsort($metrics);
 
         return $metrics;
+    }
+
+    /**
+     * @param  string $language Language
+     * @return array            Missing keys per language
+     */
+    public function getMissingTranslationsPerLanguage($language)
+    {
+        return $this->missingTranslationsPerLanguage[$language];
     }
 }

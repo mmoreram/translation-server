@@ -34,7 +34,15 @@ class MetricsCommand extends AbstractTranslationServerCommand
     {
         $this
             ->setName('translation:server:view')
-            ->setDescription('View statics about the server');
+            ->setDescription('View statics about the server')
+            ->addOption(
+                '--export',
+                '-e',
+                InputOption::VALUE_OPTIONAL,
+                "Export missing keys",
+                null
+            )
+        ;
 
         parent::configure();
     }
@@ -76,8 +84,22 @@ class MetricsCommand extends AbstractTranslationServerCommand
                     'Trans Server',
                     'Translations for ['.$language.'] is '.$languageCompleted.'% completed. '.$languageTranslationsMissing.' missing'
                 );
+
+            if ($input->getOption('export')) {
+                $this->dumpFiles($metricsLoader->getMissingTranslationsPerLanguage($language), $language);
+            }
+
         }
 
         $this->finishCommand($output);
+    }
+
+    /**
+     * @param  array  $missingTranslationsPerLanguage
+     * @param  string $language
+     */
+    protected function dumpFiles($missingTranslationsPerLanguage, $language)
+    {
+        file_put_contents(json_encode($missingTranslationsPerLanguage), 'missing.' . $language);
     }
 }
