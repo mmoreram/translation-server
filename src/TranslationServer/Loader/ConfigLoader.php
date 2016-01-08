@@ -53,6 +53,10 @@ class ConfigLoader
             throw new Exception('Your configuration file must define a set of paths where to find translations');
         }
 
+        if (!isset($configValues['export_path'])) {
+            $configValues['export_path'] = null;
+        }
+
         return $configValues;
     }
 }

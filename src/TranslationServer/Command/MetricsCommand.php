@@ -86,7 +86,11 @@ class MetricsCommand extends AbstractTranslationServerCommand
                 );
 
             if ($input->getOption('export')) {
-                $this->dumpFiles($metricsLoader->getMissingTranslationsPerLanguage($language), $language);
+                $this->dumpFiles(
+                    $metricsLoader->getMissingTranslationsPerLanguage($language),
+                    $language,
+                    $project->getExportPath()
+                );
             }
 
         }
@@ -98,8 +102,8 @@ class MetricsCommand extends AbstractTranslationServerCommand
      * @param  array  $missingTranslationsPerLanguage
      * @param  string $language
      */
-    protected function dumpFiles($missingTranslationsPerLanguage, $language)
+    protected function dumpFiles($missingTranslationsPerLanguage, $language, $exportPath)
     {
-        file_put_contents(json_encode($missingTranslationsPerLanguage), 'missing.' . $language);
+        file_put_contents(json_encode($missingTranslationsPerLanguage), $exportPath . 'missing.' . $language);
     }
 }

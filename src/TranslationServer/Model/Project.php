@@ -60,6 +60,13 @@ class Project
     private $repositoryCollection;
 
     /**
+     * @var string
+     *
+     * Export file path
+     */
+    private $exportPath;
+
+    /**
      * Construct
      *
      * @param RepositoryCollection $repositoryCollection Repository collection
@@ -71,12 +78,14 @@ class Project
         RepositoryCollection $repositoryCollection,
         $masterLanguage,
         array $availableLanguages,
-        array $paths
+        array $paths,
+        $exportPath = null
     ) {
         $this->repositoryCollection = $repositoryCollection;
         $this->masterLanguage = $masterLanguage;
         $this->availableLanguages = $availableLanguages;
         $this->paths = $paths;
+        $this->exportPath  = $exportPath;
     }
 
     /**
@@ -368,5 +377,29 @@ class Project
             $availableLanguages,
             $paths
         );
+    }
+
+    /**
+     * Gets the Export file path.
+     *
+     * @return string
+     */
+    public function getExportPath()
+    {
+        return $this->exportPath;
+    }
+
+    /**
+     * Sets the Export file path.
+     *
+     * @param string $exportPath the export path
+     *
+     * @return this
+     */
+    public function setExportPath($exportPath)
+    {
+        $this->exportPath = $exportPath;
+
+        return $this;
     }
 }

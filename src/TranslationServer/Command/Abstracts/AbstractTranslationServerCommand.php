@@ -81,13 +81,15 @@ class AbstractTranslationServerCommand extends AbstractElcodiCommand
         );
 
         $masterLanguage = $configValues['master_language'];
-        $languages = $configValues['languages'];
-        $filePaths = $configValues['paths'];
+        $languages      = $configValues['languages'];
+        $filePaths      = $configValues['paths'];
+        $exportPath     = $configValues['export_path'];
 
         return Project::create(
             $masterLanguage,
             $languages,
-            $filePaths
+            $filePaths,
+            $exportPath
         );
     }
 
