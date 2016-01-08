@@ -52,10 +52,6 @@ class Application extends BaseApplication
         $commands[] = new Command\SortCommand();
         $commands[] = new Command\GuessCommand();
 
-        if ('phar://' === substr(__DIR__, 0, 7)) {
-            $commands[] = new Command\SelfUpdateCommand();
-        }
-
         return $commands;
     }
 }

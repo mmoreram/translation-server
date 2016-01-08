@@ -1,9 +1,9 @@
-!/bin/compile
-!/bin/translation-server
 /bin/*
-/build
-/translation-server.phar
+/build/*
+!/bin/translation-server
+!/build/translation-server.phar
 /vendor
 composer.lock
 composer.phar
+box.phar
 phpunit.xml

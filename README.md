@@ -47,15 +47,16 @@ $ cp build/translation-server.phar /usr/local/bin/translation-server
 
 ### Compile
 
-Finally you can also compile your own version of the package. ( You need set `phar.readonly = Off` in your php.ini ).
+Finally you can also compile your own version of the package. ( You need
+set `phar.readonly = Off` in your php.ini ). This project is using
+[Box Project](http://box-project.github.io/box2/).
 
 ``` bash
 $ git clone git@github.com:mmoreram/translation-server.git
 $ cd translation-server
 $ composer update
-$ php bin/compile
-$ sudo chmod +x build/translation-server.phar
-$ build/translation-server.phar
+$ curl -LSs https://box-project.github.io/box2/installer.php | php
+$ box.phar update -v
 ```
 
 You can copy the `.phar` file as a global script
