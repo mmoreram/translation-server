@@ -16,12 +16,12 @@
 namespace Mmoreram\TranslationServer\Model\Interfaces;
 
 /**
- * Interface Sortable
+ * Interface Sortable.
  */
 interface Sortable
 {
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */

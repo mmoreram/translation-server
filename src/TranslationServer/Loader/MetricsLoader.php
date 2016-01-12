@@ -18,7 +18,7 @@ namespace Mmoreram\TranslationServer\Loader;
 use Mmoreram\TranslationServer\Model\Project;
 
 /**
- * Class MetricsLoader
+ * Class MetricsLoader.
  */
 class MetricsLoader
 {

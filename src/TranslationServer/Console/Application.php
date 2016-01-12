@@ -20,12 +20,12 @@ use Symfony\Component\Console\Application as BaseApplication;
 use Mmoreram\TranslationServer\Command;
 
 /**
- * Class Application
+ * Class Application.
  */
 class Application extends BaseApplication
 {
     /**
-     * Construct method
+     * Construct method.
      */
     public function __construct()
     {
@@ -42,7 +42,7 @@ class Application extends BaseApplication
     }
 
     /**
-     * Initializes all the composer commands
+     * Initializes all the composer commands.
      */
     protected function getDefaultCommands()
     {

@@ -16,7 +16,7 @@
 namespace Mmoreram\TranslationServer\Model;
 
 /**
- * Class Translation
+ * Class Translation.
  */
 class Translation
 {
@@ -63,7 +63,7 @@ class Translation
     private $masterTranslation;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $key      Key
      * @param string $value    Value
@@ -80,7 +80,7 @@ class Translation
     }
 
     /**
-     * Sets Structure
+     * Sets Structure.
      *
      * @param array $structure Structure
      *
@@ -94,7 +94,7 @@ class Translation
     }
 
     /**
-     * Get Structure
+     * Get Structure.
      *
      * @return array Structure
      */
@@ -104,7 +104,7 @@ class Translation
     }
 
     /**
-     * Get Key
+     * Get Key.
      *
      * @return string Key
      */
@@ -114,7 +114,7 @@ class Translation
     }
 
     /**
-     * Get Value
+     * Get Value.
      *
      * @return string Value
      */
@@ -124,7 +124,7 @@ class Translation
     }
 
     /**
-     * Set Value
+     * Set Value.
      *
      * @param string $value Value
      *
@@ -138,7 +138,7 @@ class Translation
     }
 
     /**
-     * Get MasterTranslation
+     * Get MasterTranslation.
      *
      * @return Translation MasterTranslation
      */
@@ -148,7 +148,7 @@ class Translation
     }
 
     /**
-     * Sets MasterTranslation
+     * Sets MasterTranslation.
      *
      * @param Translation $masterTranslation MasterTranslation
      *
@@ -162,7 +162,7 @@ class Translation
     }
 
     /**
-     * Get Language
+     * Get Language.
      *
      * @return string Language
      */
@@ -172,7 +172,7 @@ class Translation
     }
 
     /**
-     * Get Repository
+     * Get Repository.
      *
      * @return Repository Repository
      */
@@ -182,7 +182,7 @@ class Translation
     }
 
     /**
-     * Sets Repository
+     * Sets Repository.
      *
      * @param Repository $repository Repository
      *
@@ -196,7 +196,7 @@ class Translation
     }
 
     /**
-     * Create new translation
+     * Create new translation.
      *
      * @param string $key      Key
      * @param string $value    Value

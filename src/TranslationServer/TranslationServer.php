@@ -16,7 +16,7 @@
 namespace Mmoreram\TranslationServer;
 
 /**
- * Class TranslationServer
+ * Class TranslationServer.
  */
 class TranslationServer
 {

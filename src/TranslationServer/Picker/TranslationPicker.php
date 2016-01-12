@@ -20,13 +20,13 @@ use Mmoreram\TranslationServer\Model\Repository;
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class TranslationPicker
+ * Class TranslationPicker.
  */
 class TranslationPicker
 {
     /**
      * Given a Project, a set of languages and a set of domains, return a random
-     * non filled yet Translation object
+     * non filled yet Translation object.
      *
      * If the flag revision is enabled, then only already translated elements
      * will be picked up
@@ -34,7 +34,7 @@ class TranslationPicker
      * @param Project $project   Project
      * @param array   $languages Languages
      * @param array   $domains   Domains
-     * @param boolean $revision  Revision only
+     * @param bool    $revision  Revision only
      *
      * @return Translation|false Translation found or null if none translation
      *                           is available

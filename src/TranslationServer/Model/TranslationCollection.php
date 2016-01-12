@@ -19,7 +19,7 @@ use Mmoreram\TranslationServer\Model\Abstracts\TranslationAccessible;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class TranslationCollection
+ * Class TranslationCollection.
  */
 class TranslationCollection
     extends TranslationAccessible
@@ -34,7 +34,7 @@ class TranslationCollection
     private $translations;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param Translation[] $translations Translations
      */
@@ -44,7 +44,7 @@ class TranslationCollection
     }
 
     /**
-     * Add translation
+     * Add translation.
      *
      * @param Translation $translation Translation
      *
@@ -58,11 +58,11 @@ class TranslationCollection
     }
 
     /**
-     * Get translations
+     * Get translations.
      *
      * @param array    $domains   Domains
      * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param callable $filter    Filter function
      *
      * @return Translation[] $translations Set of translations
      */
@@ -90,7 +90,7 @@ class TranslationCollection
     }
 
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */
@@ -104,7 +104,7 @@ class TranslationCollection
     }
 
     /**
-     * Sort array level
+     * Sort array level.
      *
      * @param array $element Element to sort
      */
@@ -125,7 +125,7 @@ class TranslationCollection
     }
 
     /**
-     * Create new instance of Translation collection
+     * Create new instance of Translation collection.
      *
      * @param Translation[] $translations Translations
      *

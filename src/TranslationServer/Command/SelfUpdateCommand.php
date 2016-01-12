@@ -22,14 +22,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class SelfUpdateCommand
+ * Class SelfUpdateCommand.
  */
 class SelfUpdateCommand extends Command
 {
     const MANIFEST_FILE = 'http://mmoreram.github.io/translation-server/manifest.json';
 
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -40,7 +40,7 @@ class SelfUpdateCommand extends Command
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output

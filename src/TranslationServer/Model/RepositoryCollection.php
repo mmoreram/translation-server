@@ -20,7 +20,7 @@ use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class RepositoryCollection
+ * Class RepositoryCollection.
  */
 class RepositoryCollection
     extends RepositoryAccessible
@@ -36,7 +36,7 @@ class RepositoryCollection
     private $repositories;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param Repository[] $repositories Repositories
      */
@@ -46,7 +46,7 @@ class RepositoryCollection
     }
 
     /**
-     * Add repository
+     * Add repository.
      *
      * @param Repository $repository Repository
      *
@@ -58,7 +58,7 @@ class RepositoryCollection
     }
 
     /**
-     * Get Repositories
+     * Get Repositories.
      *
      * @param array $domains   Domains
      * @param array $languages Languages
@@ -89,11 +89,11 @@ class RepositoryCollection
     }
 
     /**
-     * Get translations
+     * Get translations.
      *
      * @param array    $domains   Domains
      * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param callable $filter    Filter function
      *
      * @return Translation[] $translations Set of translations
      */
@@ -122,7 +122,7 @@ class RepositoryCollection
     }
 
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */
@@ -134,7 +134,7 @@ class RepositoryCollection
     }
 
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */
@@ -146,7 +146,7 @@ class RepositoryCollection
     }
 
     /**
-     * Create new instance of Repository collection
+     * Create new instance of Repository collection.
      *
      * @param Repository[] $repositories Repositories
      *

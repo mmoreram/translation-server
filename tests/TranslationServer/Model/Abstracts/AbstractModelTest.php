@@ -20,16 +20,16 @@ use Mmoreram\TranslationServer\Model\Repository;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Class AbstractModelTest
+ * Class AbstractModelTest.
  */
 abstract class AbstractModelTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Get project
+     * Get project.
      */
     protected function getProject()
     {
-        $paths = [dirname(__FILE__).'/../../../Fixtures'];
+        $paths = [dirname(__FILE__) . '/../../../Fixtures'];
 
         return Project::create(
             'en',
@@ -39,11 +39,11 @@ abstract class AbstractModelTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Get project
+     * Get project.
      */
     protected function getRepository()
     {
-        $path = dirname(__FILE__).'/../../../Fixtures/domain.ca.yml';
+        $path = dirname(__FILE__) . '/../../../Fixtures/domain.ca.yml';
 
         return Repository::createByFilePath($path);
     }

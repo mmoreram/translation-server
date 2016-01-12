@@ -23,12 +23,12 @@ use Mmoreram\TranslationServer\Command\Abstracts\AbstractTranslationServerComman
 use Mmoreram\TranslationServer\Loader\MetricsLoader;
 
 /**
- * Class MetricsCommand
+ * Class MetricsCommand.
  */
 class MetricsCommand extends AbstractTranslationServerCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -40,7 +40,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output
@@ -74,7 +74,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Translations for ['.$language.'] is '.$languageCompleted.'% completed. '.$languageTranslationsMissing.' missing'
+                    'Translations for [' . $language . '] is ' . $languageCompleted . '% completed. ' . $languageTranslationsMissing . ' missing'
                 );
         }
 

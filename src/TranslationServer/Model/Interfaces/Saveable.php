@@ -16,12 +16,12 @@
 namespace Mmoreram\TranslationServer\Model\Interfaces;
 
 /**
- * Interface Saveable
+ * Interface Saveable.
  */
 interface Saveable
 {
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */

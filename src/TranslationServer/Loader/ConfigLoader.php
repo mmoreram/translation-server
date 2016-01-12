@@ -18,7 +18,7 @@ namespace Mmoreram\TranslationServer\Loader;
 use Exception;
 
 /**
- * Class ConfigLoader
+ * Class ConfigLoader.
  */
 class ConfigLoader
 {

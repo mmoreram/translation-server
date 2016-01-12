@@ -18,16 +18,16 @@ namespace Mmoreram\TranslationServer\Model\Abstracts;
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class TranslationAccessible
+ * Class TranslationAccessible.
  */
 abstract class TranslationAccessible
 {
     /**
-     * Get translations
+     * Get translations.
      *
      * @param array    $domains   Domains
      * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param callable $filter    Filter function
      *
      * @return Translation[] $translations Set of translations
      */
@@ -38,7 +38,7 @@ abstract class TranslationAccessible
     );
 
     /**
-     * Get available keys
+     * Get available keys.
      *
      * @param array $domains   Domains
      * @param array $languages Languages

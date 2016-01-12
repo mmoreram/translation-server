@@ -19,12 +19,12 @@ use Mmoreram\TranslationServer\Model\Translation;
 use Mmoreram\TranslationServer\Tests\Model\Abstracts\AbstractModelTest;
 
 /**
- * Class RepositoryTest
+ * Class RepositoryTest.
  */
 class RepositoryTest extends AbstractModelTest
 {
     /**
-     * Test creation by file path
+     * Test creation by file path.
      */
     public function testCreateByFilePath()
     {
@@ -56,7 +56,7 @@ class RepositoryTest extends AbstractModelTest
     }
 
     /**
-     * Test sorting Repository
+     * Test sorting Repository.
      */
     public function testSort()
     {
@@ -73,7 +73,7 @@ class RepositoryTest extends AbstractModelTest
     }
 
     /**
-     * Test add translation
+     * Test add translation.
      */
     public function testAddTranslation()
     {

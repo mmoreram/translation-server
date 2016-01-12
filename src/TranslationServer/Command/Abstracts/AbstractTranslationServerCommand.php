@@ -24,12 +24,12 @@ use Mmoreram\TranslationServer\Loader\ConfigLoader;
 use Mmoreram\TranslationServer\Model\Project;
 
 /**
- * Class AbstractTranslationServerCommand
+ * Class AbstractTranslationServerCommand.
  */
 class AbstractTranslationServerCommand extends AbstractElcodiCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -38,27 +38,27 @@ class AbstractTranslationServerCommand extends AbstractElcodiCommand
                 '--config',
                 '-c',
                 InputOption::VALUE_OPTIONAL,
-                "Config file directory",
+                'Config file directory',
                 getcwd()
             )
             ->addOption(
                 '--domain',
                 '-d',
                 InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
-                "Desired domains",
+                'Desired domains',
                 []
             )
             ->addOption(
                 '--language',
                 '-l',
                 InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
-                "Desired languages",
+                'Desired languages',
                 []
             );
     }
 
     /**
-     * Create project given an input instance
+     * Create project given an input instance.
      *
      * @param InputInterface $input Input
      *
@@ -92,7 +92,7 @@ class AbstractTranslationServerCommand extends AbstractElcodiCommand
     }
 
     /**
-     * Get project header
+     * Get project header.
      *
      * @return string Get project header
      */

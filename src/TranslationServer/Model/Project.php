@@ -23,7 +23,7 @@ use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class Project
+ * Class Project.
  */
 class Project
     extends RepositoryAccessible
@@ -60,7 +60,7 @@ class Project
     private $repositoryCollection;
 
     /**
-     * Construct
+     * Construct.
      *
      * @param RepositoryCollection $repositoryCollection Repository collection
      * @param string               $masterLanguage       Master language
@@ -80,7 +80,7 @@ class Project
     }
 
     /**
-     * Get MasterLanguage
+     * Get MasterLanguage.
      *
      * @return string MasterLanguage
      */
@@ -90,7 +90,7 @@ class Project
     }
 
     /**
-     * Get AvailableLanguages
+     * Get AvailableLanguages.
      *
      * @return string[] AvailableLanguages
      */
@@ -100,7 +100,7 @@ class Project
     }
 
     /**
-     * Get Paths
+     * Get Paths.
      *
      * @return string[] Paths
      */
@@ -110,7 +110,7 @@ class Project
     }
 
     /**
-     * Get Repositories
+     * Get Repositories.
      *
      * @param array $domains   Domains
      * @param array $languages Languages
@@ -130,11 +130,11 @@ class Project
     }
 
     /**
-     * Get Translations
+     * Get Translations.
      *
      * @param array    $domains   Domains
      * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param callable $filter    Filter function
      *
      * @return Translation[] Translations
      */
@@ -153,7 +153,7 @@ class Project
     }
 
     /**
-     * Get Translation given the language and the key
+     * Get Translation given the language and the key.
      *
      * @param string $language Language
      * @param string $key      Key
@@ -180,7 +180,7 @@ class Project
     }
 
     /**
-     * Get random Translation
+     * Get random Translation.
      *
      * @param array $domains   Domains
      * @param array $languages Languages
@@ -218,7 +218,7 @@ class Project
             foreach ($missingKeys as $missingKey) {
                 $candidates[] = [
                     'language' => $language,
-                    'key'      => $missingKey,
+                    'key' => $missingKey,
                 ];
             }
         }
@@ -248,7 +248,7 @@ class Project
     }
 
     /**
-     * Add translation
+     * Add translation.
      *
      * @param Translation $translation Translation
      *
@@ -307,7 +307,7 @@ class Project
     }
 
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */
@@ -321,7 +321,7 @@ class Project
     }
 
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */
@@ -335,7 +335,7 @@ class Project
     }
 
     /**
-     * Create a project from a list of paths
+     * Create a project from a list of paths.
      *
      * @param string   $masterLanguage     Master language
      * @param string[] $availableLanguages Available languages

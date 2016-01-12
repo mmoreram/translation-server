@@ -18,12 +18,12 @@ namespace Mmoreram\TranslationServer\Finder;
 use Symfony\Component\Finder\Finder;
 
 /**
- * Class FileFinder
+ * Class FileFinder.
  */
 class FileFinder
 {
     /**
-     * Find all php files by path
+     * Find all php files by path.
      *
      * @param string $path Path
      *

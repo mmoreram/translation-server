@@ -23,12 +23,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class GuessCommand
+ * Class GuessCommand.
  */
 class GuessCommand extends AddCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -40,7 +40,7 @@ class GuessCommand extends AddCommand
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output
@@ -86,24 +86,24 @@ class GuessCommand extends AddCommand
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Language : '.$randomTranslation->getLanguage()
+                    'Language : ' . $randomTranslation->getLanguage()
                 )
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Key : '.$randomTranslation->getKey()
+                    'Key : ' . $randomTranslation->getKey()
                 )
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Original : '.$randomTranslation
+                    'Original : ' . $randomTranslation
                         ->getMasterTranslation()
                         ->getValue()
                 )
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Translation : '.$translation
+                    'Translation : ' . $translation
                 );
 
             $randomTranslation->setValue($translation);

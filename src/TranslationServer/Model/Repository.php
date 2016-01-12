@@ -23,7 +23,7 @@ use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class Repository
+ * Class Repository.
  */
 class Repository
     extends TranslationAccessible
@@ -60,7 +60,7 @@ class Repository
     private $translationCollection;
 
     /**
-     * Construct
+     * Construct.
      *
      * @param TranslationCollection $translationCollection Translation collection
      * @param string                $path                  Path
@@ -86,7 +86,7 @@ class Repository
     }
 
     /**
-     * Create a new repository given a file path
+     * Create a new repository given a file path.
      *
      * @param string $filepath File path
      *
@@ -121,7 +121,7 @@ class Repository
     }
 
     /**
-     * Create empty repository given it's path
+     * Create empty repository given it's path.
      *
      * @param string $filepath File path
      *
@@ -141,7 +141,7 @@ class Repository
     }
 
     /**
-     * Given an array, return a list of plain keys and values
+     * Given an array, return a list of plain keys and values.
      *
      * @param array  $translations Translations
      * @param string $language     Language
@@ -170,10 +170,10 @@ class Repository
                     $language,
                     $value,
                     $currentStructure,
-                    $prefix.'.'.$key
+                    $prefix . '.' . $key
                 );
             } else {
-                $builtKey = trim($prefix.'.'.$key, '.');
+                $builtKey = trim($prefix . '.' . $key, '.');
                 $translation = Translation::create(
                     $builtKey,
                     $value,
@@ -192,7 +192,7 @@ class Repository
     }
 
     /**
-     * Add an element at the end of an array recursively (last child)
+     * Add an element at the end of an array recursively (last child).
      *
      * @param array  $structure Structure
      * @param string $key       Key
@@ -212,7 +212,7 @@ class Repository
     }
 
     /**
-     * Add translation
+     * Add translation.
      *
      * @param Translation $translation Translation
      *
@@ -227,7 +227,7 @@ class Repository
     }
 
     /**
-     * Get Path
+     * Get Path.
      *
      * @return string Path
      */
@@ -237,7 +237,7 @@ class Repository
     }
 
     /**
-     * Get Path
+     * Get Path.
      *
      * @return string Path
      */
@@ -251,7 +251,7 @@ class Repository
     }
 
     /**
-     * Get Dirname
+     * Get Dirname.
      *
      * @return string Dirname
      */
@@ -261,7 +261,7 @@ class Repository
     }
 
     /**
-     * Get Language
+     * Get Language.
      *
      * @return string Language
      */
@@ -271,7 +271,7 @@ class Repository
     }
 
     /**
-     * Get Domain
+     * Get Domain.
      *
      * @return string Domain
      */
@@ -281,11 +281,11 @@ class Repository
     }
 
     /**
-     * Get translations
+     * Get translations.
      *
      * @param array    $domains   Domains
      * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param callable $filter    Filter function
      *
      * @return Translation[] $translations Set of translations
      */
@@ -304,7 +304,7 @@ class Repository
     }
 
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */
@@ -318,7 +318,7 @@ class Repository
     }
 
     /**
-     * Save structure
+     * Save structure.
      *
      * @return $this Self object
      */
@@ -344,7 +344,7 @@ class Repository
     }
 
     /**
-     * Build the repository path given the basename, the domain and the language
+     * Build the repository path given the basename, the domain and the language.
      *
      * @param string $basename Base name
      * @param string $domain   Domain

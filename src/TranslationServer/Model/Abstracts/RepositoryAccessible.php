@@ -18,12 +18,12 @@ namespace Mmoreram\TranslationServer\Model\Abstracts;
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class RepositoryAccessible
+ * Class RepositoryAccessible.
  */
 abstract class RepositoryAccessible extends TranslationAccessible
 {
     /**
-     * Get translations
+     * Get translations.
      *
      * @param array $domains   Domains
      * @param array $languages Languages

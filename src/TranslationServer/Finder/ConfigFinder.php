@@ -21,12 +21,12 @@ use Symfony\Component\Yaml\Parser as YamlParser;
 use Mmoreram\TranslationServer\TranslationServer;
 
 /**
- * Class ConfigFinder
+ * Class ConfigFinder.
  */
 class ConfigFinder
 {
     /**
-     * Load, if exists, specific project configuration
+     * Load, if exists, specific project configuration.
      *
      * @param string $path Path
      *
@@ -36,7 +36,7 @@ class ConfigFinder
      */
     public function findConfigFile($path)
     {
-        $configFilePath = rtrim($path, '/').'/'.TranslationServer::CONFIG_FILE_NAME;
+        $configFilePath = rtrim($path, '/') . '/' . TranslationServer::CONFIG_FILE_NAME;
         if (!is_file($configFilePath)) {
             throw new Exception('File ".translation.yml" not found');
         }

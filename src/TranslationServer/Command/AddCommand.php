@@ -23,12 +23,12 @@ use Mmoreram\TranslationServer\Command\Abstracts\AbstractTranslationServerComman
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class AddCommand
+ * Class AddCommand.
  */
 class AddCommand extends AbstractTranslationServerCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -40,7 +40,7 @@ class AddCommand extends AbstractTranslationServerCommand
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output
@@ -78,17 +78,17 @@ class AddCommand extends AbstractTranslationServerCommand
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Language : '.$randomTranslation->getLanguage()
+                    'Language : ' . $randomTranslation->getLanguage()
                 )
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Key : '.$randomTranslation->getKey()
+                    'Key : ' . $randomTranslation->getKey()
                 )
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Original : '.$randomTranslation
+                    'Original : ' . $randomTranslation
                         ->getMasterTranslation()
                         ->getValue()
                 );
@@ -121,7 +121,7 @@ class AddCommand extends AbstractTranslationServerCommand
     }
 
     /**
-     * Overwrite the last child of a structure for given value
+     * Overwrite the last child of a structure for given value.
      *
      * @param array $structure Structure
      * @param mixed $value     Value
