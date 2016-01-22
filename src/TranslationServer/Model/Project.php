@@ -355,7 +355,8 @@ class Project
     public static function create(
         $masterLanguage,
         array $availableLanguages,
-        array $paths
+        array $paths,
+        $exportPath = null
     ) {
         $finder = new Finder();
         $finder
@@ -375,7 +376,8 @@ class Project
             $repositoryCollection,
             $masterLanguage,
             $availableLanguages,
-            $paths
+            $paths,
+            $exportPath
         );
     }
 

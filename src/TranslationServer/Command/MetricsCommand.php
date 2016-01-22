@@ -16,11 +16,11 @@
 namespace Mmoreram\TranslationServer\Command;
 
 use Exception;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-
 use Mmoreram\TranslationServer\Command\Abstracts\AbstractTranslationServerCommand;
 use Mmoreram\TranslationServer\Loader\MetricsLoader;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class MetricsCommand
@@ -38,7 +38,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
             ->addOption(
                 '--export',
                 '-e',
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_NONE,
                 "Export missing keys",
                 null
             )
@@ -86,6 +86,14 @@ class MetricsCommand extends AbstractTranslationServerCommand
                 );
 
             if ($input->getOption('export')) {
+                $this
+                    ->printMessage(
+                        $output,
+                        'Trans Server',
+                        sprintf('Export missing file in %s for %s', '/tmp' . DIRECTORY_SEPARATOR. 'missing.' . $language .'.json', $language)
+                    );
+
+
                 $this->dumpFiles(
                     $metricsLoader->getMissingTranslationsPerLanguage($language),
                     $language,
@@ -104,6 +112,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
      */
     protected function dumpFiles($missingTranslationsPerLanguage, $language, $exportPath)
     {
-        file_put_contents(json_encode($missingTranslationsPerLanguage), $exportPath . 'missing.' . $language);
+        // /tmp/missing.en.json
+        file_put_contents($exportPath . DIRECTORY_SEPARATOR. 'missing.' . $language .'.json', json_encode($missingTranslationsPerLanguage));
     }
 }
