@@ -16,11 +16,11 @@
 namespace Mmoreram\TranslationServer\Command;
 
 use Exception;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-
 use Mmoreram\TranslationServer\Command\Abstracts\AbstractTranslationServerCommand;
 use Mmoreram\TranslationServer\Loader\MetricsLoader;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class MetricsCommand
@@ -34,7 +34,15 @@ class MetricsCommand extends AbstractTranslationServerCommand
     {
         $this
             ->setName('translation:server:view')
-            ->setDescription('View statics about the server');
+            ->setDescription('View statics about the server')
+            ->addOption(
+                '--export',
+                '-e',
+                InputOption::VALUE_NONE,
+                "Export missing keys",
+                null
+            )
+        ;
 
         parent::configure();
     }
@@ -76,8 +84,35 @@ class MetricsCommand extends AbstractTranslationServerCommand
                     'Trans Server',
                     'Translations for ['.$language.'] is '.$languageCompleted.'% completed. '.$languageTranslationsMissing.' missing'
                 );
+
+            if ($input->getOption('export')) {
+                $this
+                    ->printMessage(
+                        $output,
+                        'Trans Server',
+                        sprintf('Export missing file in %s for %s', '/tmp' . DIRECTORY_SEPARATOR. 'missing.' . $language .'.json', $language)
+                    );
+
+
+                $this->dumpFiles(
+                    $metricsLoader->getMissingTranslationsPerLanguage($language),
+                    $language,
+                    $project->getExportPath()
+                );
+            }
+
         }
 
         $this->finishCommand($output);
+    }
+
+    /**
+     * @param  array  $missingTranslationsPerLanguage
+     * @param  string $language
+     */
+    protected function dumpFiles($missingTranslationsPerLanguage, $language, $exportPath)
+    {
+        // /tmp/missing.en.json
+        file_put_contents($exportPath . DIRECTORY_SEPARATOR. 'missing.' . $language .'.json', json_encode($missingTranslationsPerLanguage));
     }
 }
