@@ -23,7 +23,7 @@
         "symfony/property-access": "^2.7|^3.0",
 
         "elcodi/core": "^1.0.2",
-        "stichoza/google-translate-php": "^3.1"
+        "stichoza/google-translate-php": "^3.2"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "1.4.2",
