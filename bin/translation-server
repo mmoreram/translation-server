@@ -14,9 +14,24 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 use Mmoreram\TranslationServer\Console\Application;
+
+/**
+ * @param string $file
+ * @return bool
+ */
+function requireIfExists($file)
+{
+    var_dump($file);
+    return file_exists($file) ? require_once $file : false;
+}
+
+if (!requireIfExists(__DIR__ . '/../vendor/autoload.php')
+    && !requireIfExists(__DIR__ . '/../../../autoload.php'))
+{
+    echo 'Missing autoload.php, update by the composer.' . PHP_EOL;
+    exit(1);
+}
 
 error_reporting(-1);
 ini_set('display_errors', 1);
