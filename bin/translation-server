@@ -22,7 +22,6 @@ use Mmoreram\TranslationServer\Console\Application;
  */
 function requireIfExists($file)
 {
-    var_dump($file);
     return file_exists($file) ? require_once $file : false;
 }
 
