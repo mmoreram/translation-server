@@ -13,17 +13,17 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model\Interfaces;
 
 /**
- * Interface Saveable
+ * Interface Saveable.
  */
 interface Saveable
 {
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function save();
 }

@@ -13,15 +13,17 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model;
 
 /**
- * Class Translation
+ * Class Translation.
  */
 class Translation
 {
     /**
-     * @var string
+     * @var string|int
      *
      * Key
      */
@@ -63,16 +65,16 @@ class Translation
     private $masterTranslation;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $key      Key
-     * @param string $value    Value
-     * @param string $language Language
+     * @param string|int $key
+     * @param mixed      $value
+     * @param string     $language
      */
     private function __construct(
         $key,
         $value,
-        $language
+        string $language
     ) {
         $this->key = $key;
         $this->value = $value;
@@ -80,33 +82,29 @@ class Translation
     }
 
     /**
-     * Sets Structure
+     * Sets Structure.
      *
-     * @param array $structure Structure
-     *
-     * @return $this Self object
+     * @param array $structure
      */
-    public function setStructure($structure)
+    public function setStructure(array $structure)
     {
         $this->structure = $structure;
-
-        return $this;
     }
 
     /**
-     * Get Structure
+     * Get Structure.
      *
-     * @return array Structure
+     * @return array
      */
-    public function getStructure()
+    public function getStructure() : array
     {
         return $this->structure;
     }
 
     /**
-     * Get Key
+     * Get Key.
      *
-     * @return string Key
+     * @return string|int
      */
     public function getKey()
     {
@@ -114,9 +112,9 @@ class Translation
     }
 
     /**
-     * Get Value
+     * Get Value.
      *
-     * @return string Value
+     * @return mixed
      */
     public function getValue()
     {
@@ -124,90 +122,78 @@ class Translation
     }
 
     /**
-     * Set Value
+     * Set Value.
      *
-     * @param string $value Value
-     *
-     * @return $this Self object
+     * @param mixed $value
      */
     public function setValue($value)
     {
         $this->value = $value;
-
-        return $this;
     }
 
     /**
-     * Get MasterTranslation
+     * Get MasterTranslation.
      *
-     * @return Translation MasterTranslation
+     * @return Translation
      */
-    public function getMasterTranslation()
+    public function getMasterTranslation() : Translation
     {
         return $this->masterTranslation;
     }
 
     /**
-     * Sets MasterTranslation
+     * Sets MasterTranslation.
      *
-     * @param Translation $masterTranslation MasterTranslation
-     *
-     * @return $this Self object
+     * @param Translation $masterTranslation
      */
-    public function setMasterTranslation($masterTranslation)
+    public function setMasterTranslation(Translation $masterTranslation)
     {
         $this->masterTranslation = $masterTranslation;
-
-        return $this;
     }
 
     /**
-     * Get Language
+     * Get Language.
      *
-     * @return string Language
+     * @return string
      */
-    public function getLanguage()
+    public function getLanguage() : string
     {
         return $this->language;
     }
 
     /**
-     * Get Repository
+     * Get Repository.
      *
-     * @return Repository Repository
+     * @return Repository
      */
-    public function getRepository()
+    public function getRepository() : Repository
     {
         return $this->repository;
     }
 
     /**
-     * Sets Repository
+     * Sets Repository.
      *
-     * @param Repository $repository Repository
-     *
-     * @return $this Self object
+     * @param Repository $repository
      */
-    public function setRepository($repository)
+    public function setRepository(Repository $repository)
     {
         $this->repository = $repository;
-
-        return $this;
     }
 
     /**
-     * Create new translation
+     * Create new translation.
      *
-     * @param string $key      Key
-     * @param string $value    Value
-     * @param string $language Language
+     * @param string|int $key
+     * @param mixed      $value
+     * @param string     $language
      *
-     * @return self New Translation instance
+     * @return Translation
      */
     public static function create(
         $key,
         $value,
-        $language
+        string $language
     ) {
         return new self(
             $key,

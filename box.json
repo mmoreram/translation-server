@@ -11,9 +11,7 @@
     "extract": true,
     "files": [
         "LICENSE",
-        "vendor/autoload.php",
-        "vendor/composer/installed.json",
-        "vendor/composer/LICENSE"
+        "vendor/autoload.php"
     ],
     "finder": [
         {
@@ -22,12 +20,10 @@
                 "Tests"
             ],
             "in": [
-                "vendor",
-                "vendor/doctrine",
-                "vendor/elcodi",
                 "vendor/guzzlehttp",
-                "vendor/phpunit",
                 "vendor/stichoza",
+                "vendor/paragonie",
+                "vendor/composer",
                 "vendor/symfony"
             ],
             "name": "*.php"

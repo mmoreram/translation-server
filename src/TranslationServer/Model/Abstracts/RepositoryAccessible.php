@@ -13,25 +13,27 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model\Abstracts;
 
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class RepositoryAccessible
+ * Class RepositoryAccessible.
  */
 abstract class RepositoryAccessible extends TranslationAccessible
 {
     /**
-     * Get translations
+     * Get translations.
      *
-     * @param array $domains   Domains
-     * @param array $languages Languages
+     * @param array $domains
+     * @param array $languages
      *
-     * @return Translation[] $translations Set of translations
+     * @return Translation[]
      */
     abstract public function getRepositories(
         array $domains = [],
         array $languages = []
-    );
+    ) : array;
 }

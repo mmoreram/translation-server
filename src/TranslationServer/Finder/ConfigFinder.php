@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Finder;
 
 use Exception;
@@ -21,22 +23,22 @@ use Symfony\Component\Yaml\Parser as YamlParser;
 use Mmoreram\TranslationServer\TranslationServer;
 
 /**
- * Class ConfigFinder
+ * Class ConfigFinder.
  */
 class ConfigFinder
 {
     /**
-     * Load, if exists, specific project configuration
+     * Load, if exists, specific project configuration.
      *
-     * @param string $path Path
+     * @param string $path
      *
-     * @return array loaded config
+     * @return array
      *
      * @throws Exception Config file not found
      */
-    public function findConfigFile($path)
+    public function findConfigFile(string $path) : array
     {
-        $configFilePath = rtrim($path, '/').'/'.TranslationServer::CONFIG_FILE_NAME;
+        $configFilePath = rtrim($path, '/') . '/' . TranslationServer::CONFIG_FILE_NAME;
         if (!is_file($configFilePath)) {
             throw new Exception('File ".translation.yml" not found');
         }

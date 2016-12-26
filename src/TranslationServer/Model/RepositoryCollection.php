@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model;
 
 use Mmoreram\TranslationServer\Model\Abstracts\RepositoryAccessible;
@@ -20,11 +22,9 @@ use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class RepositoryCollection
+ * Class RepositoryCollection.
  */
-class RepositoryCollection
-    extends RepositoryAccessible
-    implements
+class RepositoryCollection extends RepositoryAccessible implements
         Sortable,
         Saveable
 {
@@ -36,7 +36,7 @@ class RepositoryCollection
     private $repositories;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param Repository[] $repositories Repositories
      */
@@ -46,11 +46,9 @@ class RepositoryCollection
     }
 
     /**
-     * Add repository
+     * Add repository.
      *
-     * @param Repository $repository Repository
-     *
-     * @return Repository Repository
+     * @param Repository $repository
      */
     public function addRepository(Repository $repository)
     {
@@ -58,17 +56,17 @@ class RepositoryCollection
     }
 
     /**
-     * Get Repositories
+     * Get Repositories.
      *
-     * @param array $domains   Domains
-     * @param array $languages Languages
+     * @param array $domains
+     * @param array $languages
      *
-     * @return Repository[] Repositories
+     * @return Repository[]
      */
     public function getRepositories(
         array $domains = [],
         array $languages = []
-    ) {
+    ) : array {
         $repositories = array_filter(
             $this->repositories,
             function (Repository $repository) use ($domains) {
@@ -89,19 +87,19 @@ class RepositoryCollection
     }
 
     /**
-     * Get translations
+     * Get translations.
      *
-     * @param array    $domains   Domains
-     * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param array    $domains
+     * @param array    $languages
+     * @param callable $filter
      *
-     * @return Translation[] $translations Set of translations
+     * @return Translation[]
      */
     public function getTranslations(
         array $domains = [],
         array $languages = [],
         callable $filter = null
-    ) {
+    ) : array {
         return array_reduce(
             $this->getRepositories(
                 $domains,
@@ -122,9 +120,7 @@ class RepositoryCollection
     }
 
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function sort()
     {
@@ -134,9 +130,7 @@ class RepositoryCollection
     }
 
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function save()
     {
@@ -146,13 +140,13 @@ class RepositoryCollection
     }
 
     /**
-     * Create new instance of Repository collection
+     * Create new instance of Repository collection.
      *
-     * @param Repository[] $repositories Repositories
+     * @param Repository[] $repositories
      *
-     * @return self New instance
+     * @return RepositoryCollection
      */
-    public static function create(array $repositories)
+    public static function create(array $repositories) : RepositoryCollection
     {
         return new self($repositories);
     }

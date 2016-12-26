@@ -13,17 +13,17 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model;
 
 use Mmoreram\TranslationServer\Model\Abstracts\TranslationAccessible;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class TranslationCollection
+ * Class TranslationCollection.
  */
-class TranslationCollection
-    extends TranslationAccessible
-    implements
+class TranslationCollection extends TranslationAccessible implements
         Sortable
 {
     /**
@@ -34,9 +34,9 @@ class TranslationCollection
     private $translations;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param Translation[] $translations Translations
+     * @param Translation[] $translations
      */
     private function __construct(array $translations)
     {
@@ -44,37 +44,32 @@ class TranslationCollection
     }
 
     /**
-     * Add translation
+     * Add translation.
      *
-     * @param Translation $translation Translation
-     *
-     * @return $this Self object
+     * @param Translation $translation
      */
     public function addTranslation(Translation $translation)
     {
         $this->translations[] = $translation;
-
-        return $this;
     }
 
     /**
-     * Get translations
+     * Get translations.
      *
-     * @param array    $domains   Domains
-     * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param array    $domains
+     * @param array    $languages
+     * @param callable $filter
      *
-     * @return Translation[] $translations Set of translations
+     * @return Translation[]
      */
     public function getTranslations(
         array $domains = [],
         array $languages = [],
         callable $filter = null
-    ) {
+    ) : array {
         $translations = array_filter(
             $this->translations,
             function (Translation $translation) {
-
                 return $translation->getValue() != '';
             }
         );
@@ -90,23 +85,19 @@ class TranslationCollection
     }
 
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function sort()
     {
         $this->recursiveSort(
             $this->translations
         );
-
-        return $this;
     }
 
     /**
-     * Sort array level
+     * Sort array level.
      *
-     * @param array $element Element to sort
+     * @param array $element
      */
     private function recursiveSort(array &$element)
     {
@@ -125,11 +116,11 @@ class TranslationCollection
     }
 
     /**
-     * Create new instance of Translation collection
+     * Create new instance of Translation collection.
      *
-     * @param Translation[] $translations Translations
+     * @param Translation[] $translations
      *
-     * @return self New instance
+     * @return TranslationCollection
      */
     public static function create(array $translations)
     {

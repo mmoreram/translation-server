@@ -13,23 +13,36 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Command\Abstracts;
 
-use Elcodi\Component\Core\Command\Abstracts\AbstractElcodiCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Stopwatch\Stopwatch;
+use Symfony\Component\Stopwatch\StopwatchEvent;
 
 use Mmoreram\TranslationServer\Finder\ConfigFinder;
 use Mmoreram\TranslationServer\Loader\ConfigLoader;
 use Mmoreram\TranslationServer\Model\Project;
 
 /**
- * Class AbstractTranslationServerCommand
+ * Class AbstractTranslationServerCommand.
  */
-class AbstractTranslationServerCommand extends AbstractElcodiCommand
+class AbstractTranslationServerCommand extends Command
 {
     /**
-     * configure
+     * @var Stopwatch
+     *
+     * Stopwatch instance
+     */
+    private $stopwatch;
+
+    /**
+     * configure.
      */
     protected function configure()
     {
@@ -38,33 +51,33 @@ class AbstractTranslationServerCommand extends AbstractElcodiCommand
                 '--config',
                 '-c',
                 InputOption::VALUE_OPTIONAL,
-                "Config file directory",
+                'Config file directory',
                 getcwd()
             )
             ->addOption(
                 '--domain',
                 '-d',
                 InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
-                "Desired domains",
+                'Desired domains',
                 []
             )
             ->addOption(
                 '--language',
                 '-l',
                 InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
-                "Desired languages",
+                'Desired languages',
                 []
             );
     }
 
     /**
-     * Create project given an input instance
+     * Create project given an input instance.
      *
-     * @param InputInterface $input Input
+     * @param InputInterface $input
      *
-     * @return Project New project instance
+     * @return Project
      */
-    public function createProject(InputInterface $input)
+    public function createProjectByInput(InputInterface $input) : Project
     {
         $configFinder = new ConfigFinder();
         $configLoader = new ConfigLoader();
@@ -92,11 +105,145 @@ class AbstractTranslationServerCommand extends AbstractElcodiCommand
     }
 
     /**
-     * Get project header
+     * Start command.
      *
-     * @return string Get project header
+     * @param OutputInterface $output
+     * @param bool            $longCommand
      */
-    protected function getProjectHeader()
+    protected function startCommand(
+        OutputInterface $output,
+        bool $longCommand = false
+    ) {
+        $this->configureFormatter($output);
+        $this->stopwatch = new Stopwatch();
+        $this->startStopWatch('command');
+        $output->writeln('');
+        $this
+            ->printMessage(
+                $output,
+                $this->getProjectHeader(),
+                'Command started at ' . date('r')
+            );
+
+        if ($longCommand) {
+            $this
+                ->printMessage(
+                    $output,
+                    $this->getProjectHeader(),
+                    'This process may take a few minutes. Please, be patient'
+                );
+        }
+    }
+
+    /**
+     * Configure formatter with Elcodi specific style.
+     *
+     * @param OutputInterface $output
+     */
+    protected function configureFormatter(OutputInterface $output)
+    {
+        $formatter = $output->getFormatter();
+        $formatter->setStyle('header', new OutputFormatterStyle('green'));
+        $formatter->setStyle('failheader', new OutputFormatterStyle('red'));
+        $formatter->setStyle('body', new OutputFormatterStyle('white'));
+    }
+
+    /**
+     * Start stopwatch.
+     *
+     * @param string $eventName
+     *
+     * @return StopwatchEvent
+     */
+    protected function startStopWatch($eventName) : StopwatchEvent
+    {
+        return $this
+            ->stopwatch
+            ->start($eventName);
+    }
+
+    /**
+     * Print message.
+     *
+     * @param OutputInterface $output
+     * @param string          $header
+     * @param string          $body
+     */
+    protected function printMessage(
+        OutputInterface $output,
+        $header,
+        $body
+    ) {
+        $message = sprintf(
+            '<header>%s</header> <body>%s</body>',
+            '[' . $header . ']',
+            $body
+        );
+        $output->writeln($message);
+    }
+
+    /**
+     * Print message.
+     *
+     * @param OutputInterface $output
+     * @param string          $header
+     * @param string          $body
+     */
+    protected function printMessageFail(
+        OutputInterface $output,
+        string $header,
+        string $body
+    ) {
+        $message = sprintf(
+            '<failheader>%s</failheader> <body>%s</body>',
+            '[' . $header . ']',
+            $body
+        );
+        $output->writeln($message);
+    }
+
+    /**
+     * Finish command.
+     *
+     * @param OutputInterface $output
+     */
+    protected function finishCommand(OutputInterface $output)
+    {
+        $event = $this->stopStopWatch('command');
+        $this
+            ->printMessage(
+                $output,
+                $this->getProjectHeader(),
+                'Command finished in ' . $event->getDuration() . ' milliseconds'
+            );
+        $this->printMessage(
+                $output,
+                $this->getProjectHeader(),
+                'Max memory used: ' . $event->getMemory() . ' bytes'
+            );
+        $output->writeln('');
+    }
+
+    /**
+     * Stop stopwatch.
+     *
+     * @param string $eventName Event name
+     *
+     * @return StopwatchEvent
+     */
+    protected function stopStopWatch($eventName) : StopwatchEvent
+    {
+        return $this
+            ->stopwatch
+            ->stop($eventName);
+    }
+
+    /**
+     * Get project header.
+     *
+     * @return string
+     */
+    protected function getProjectHeader() : string
     {
         return 'Trans Server';
     }

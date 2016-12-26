@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
@@ -20,18 +22,18 @@ use Symfony\Component\Console\Application as BaseApplication;
 use Mmoreram\TranslationServer\Command;
 
 /**
- * Class Application
+ * Class Application.
  */
 class Application extends BaseApplication
 {
     /**
-     * Construct method
+     * Construct method.
      */
     public function __construct()
     {
         if (function_exists('ini_set') && extension_loaded('xdebug')) {
-            ini_set('xdebug.show_exception_trace', false);
-            ini_set('xdebug.scream', false);
+            ini_set('xdebug.show_exception_trace', '0');
+            ini_set('xdebug.scream', '0');
         }
 
         if (function_exists('date_default_timezone_set') && function_exists('date_default_timezone_get')) {
@@ -42,7 +44,7 @@ class Application extends BaseApplication
     }
 
     /**
-     * Initializes all the composer commands
+     * Initializes all the composer commands.
      */
     protected function getDefaultCommands()
     {
@@ -51,10 +53,6 @@ class Application extends BaseApplication
         $commands[] = new Command\AddCommand();
         $commands[] = new Command\SortCommand();
         $commands[] = new Command\GuessCommand();
-
-        if ('phar://' === substr(__DIR__, 0, 7)) {
-            $commands[] = new Command\SelfUpdateCommand();
-        }
 
         return $commands;
     }

@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Command;
 
 use Exception;
@@ -22,12 +24,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Mmoreram\TranslationServer\Command\Abstracts\AbstractTranslationServerCommand;
 
 /**
- * Class SortCommand
+ * Class SortCommand.
  */
 class SortCommand extends AbstractTranslationServerCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -39,7 +41,7 @@ class SortCommand extends AbstractTranslationServerCommand
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output
@@ -51,10 +53,9 @@ class SortCommand extends AbstractTranslationServerCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->startCommand($output, false);
-        $this
-            ->createProject($input)
-            ->sort()
-            ->save();
+        $project = $this->createProjectByInput($input);
+        $project->sort();
+        $project->save();
 
         $this
             ->printMessage(

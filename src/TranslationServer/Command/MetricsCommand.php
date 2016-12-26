@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Command;
 
 use Exception;
@@ -23,12 +25,12 @@ use Mmoreram\TranslationServer\Command\Abstracts\AbstractTranslationServerComman
 use Mmoreram\TranslationServer\Loader\MetricsLoader;
 
 /**
- * Class MetricsCommand
+ * Class MetricsCommand.
  */
 class MetricsCommand extends AbstractTranslationServerCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -40,7 +42,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output
@@ -55,7 +57,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
         $inputDomains = $input->getOption('domain');
         $inputLanguages = $input->getOption('language');
 
-        $project = $this->createProject($input);
+        $project = $this->createProjectByInput($input);
         $metricsLoader = new MetricsLoader();
         $metrics = $metricsLoader
             ->getTotalMetrics(
@@ -74,7 +76,7 @@ class MetricsCommand extends AbstractTranslationServerCommand
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Translations for ['.$language.'] is '.$languageCompleted.'% completed. '.$languageTranslationsMissing.' missing'
+                    'Translations for [' . $language . '] is ' . $languageCompleted . '% completed. ' . $languageTranslationsMissing . ' missing'
                 );
         }
 
