@@ -13,18 +13,19 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Tests\Model;
 
-use Mmoreram\TranslationServer\Model\Project;
 use Mmoreram\TranslationServer\Tests\Model\Abstracts\AbstractModelTest;
 
 /**
- * Class ProjectTest
+ * Class ProjectTest.
  */
 class ProjectTest extends AbstractModelTest
 {
     /**
-     * Test creation by paths
+     * Test creation by paths.
      *
      * @dataProvider dataCreateProjectByPaths
      */
@@ -44,7 +45,7 @@ class ProjectTest extends AbstractModelTest
     }
 
     /**
-     * Data for testCreateProjectByPaths
+     * Data for testCreateProjectByPaths.
      */
     public function dataCreateProjectByPaths()
     {
@@ -61,7 +62,7 @@ class ProjectTest extends AbstractModelTest
     }
 
     /**
-     * Test get random translation
+     * Test get random translation.
      */
     public function testGetRandomTranslation()
     {

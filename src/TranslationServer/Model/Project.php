@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model;
 
 use Exception;
@@ -23,11 +25,9 @@ use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class Project
+ * Class Project.
  */
-class Project
-    extends RepositoryAccessible
-    implements
+class Project extends RepositoryAccessible implements
         Sortable,
         Saveable
 {
@@ -60,16 +60,16 @@ class Project
     private $repositoryCollection;
 
     /**
-     * Construct
+     * Construct.
      *
-     * @param RepositoryCollection $repositoryCollection Repository collection
-     * @param string               $masterLanguage       Master language
-     * @param string[]             $availableLanguages   Available languages
-     * @param string[]             $paths                List of paths
+     * @param RepositoryCollection $repositoryCollection
+     * @param string               $masterLanguage
+     * @param string[]             $availableLanguages
+     * @param string[]             $paths
      */
     private function __construct(
         RepositoryCollection $repositoryCollection,
-        $masterLanguage,
+        string $masterLanguage,
         array $availableLanguages,
         array $paths
     ) {
@@ -80,47 +80,47 @@ class Project
     }
 
     /**
-     * Get MasterLanguage
+     * Get MasterLanguage.
      *
-     * @return string MasterLanguage
+     * @return string
      */
-    public function getMasterLanguage()
+    public function getMasterLanguage() : string
     {
         return $this->masterLanguage;
     }
 
     /**
-     * Get AvailableLanguages
+     * Get AvailableLanguages.
      *
-     * @return string[] AvailableLanguages
+     * @return string[]
      */
-    public function getAvailableLanguages()
+    public function getAvailableLanguages() : array
     {
         return $this->availableLanguages;
     }
 
     /**
-     * Get Paths
+     * Get Paths.
      *
-     * @return string[] Paths
+     * @return string[]
      */
-    public function getPaths()
+    public function getPaths() : array
     {
         return $this->paths;
     }
 
     /**
-     * Get Repositories
+     * Get Repositories.
      *
-     * @param array $domains   Domains
-     * @param array $languages Languages
+     * @param array $domains
+     * @param array $languages
      *
-     * @return Repository[] Repositories
+     * @return Repository[]
      */
     public function getRepositories(
         array $domains = [],
         array $languages = []
-    ) {
+    ) : array {
         return $this
             ->repositoryCollection
             ->getRepositories(
@@ -130,19 +130,19 @@ class Project
     }
 
     /**
-     * Get Translations
+     * Get Translations.
      *
-     * @param array    $domains   Domains
-     * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param array    $domains
+     * @param array    $languages
+     * @param callable $filter
      *
-     * @return Translation[] Translations
+     * @return Translation[]
      */
     public function getTranslations(
         array $domains = [],
         array $languages = [],
         callable $filter = null
-    ) {
+    ) : array {
         return $this
             ->repositoryCollection
             ->getTranslations(
@@ -153,17 +153,17 @@ class Project
     }
 
     /**
-     * Get Translation given the language and the key
+     * Get Translation given the language and the key.
      *
-     * @param string $language Language
-     * @param string $key      Key
+     * @param string $language
+     * @param string $key
      *
-     * @return Translation Translation
+     * @return Translation
      */
     public function getTranslation(
-        $language,
-        $key
-    ) {
+        string $language,
+        string $key
+    ) : Translation {
         $languages = $this
             ->repositoryCollection
             ->getTranslations(
@@ -180,19 +180,19 @@ class Project
     }
 
     /**
-     * Get random Translation
+     * Get random Translation. If no translations are available, return null.
      *
-     * @param array $domains   Domains
-     * @param array $languages Languages
+     * @param array $domains
+     * @param array $languages
      *
-     * @return Translation Random translation
+     * @return Translation|null
      *
      * @throws Exception You cannot search missing translations by master language
      */
     public function getRandomMissingTranslation(
         array $domains = [],
         array $languages = []
-    ) {
+    ) : ? Translation {
         if (in_array($this->masterLanguage, $languages)) {
             throw new Exception('You cannot search by master language missing translations');
         }
@@ -218,13 +218,13 @@ class Project
             foreach ($missingKeys as $missingKey) {
                 $candidates[] = [
                     'language' => $language,
-                    'key'      => $missingKey,
+                    'key' => $missingKey,
                 ];
             }
         }
 
         if (empty($candidates)) {
-            return false;
+            return null;
         }
 
         $candidateKey = array_rand($candidates);
@@ -236,23 +236,20 @@ class Project
 
         $candidateTranslation = Translation::create(
             $candidate['key'],
-            null,
+            '',
             $candidate['language']
         );
 
-        $candidateTranslation
-            ->setStructure($masterCandidate->getStructure())
-            ->setMasterTranslation($masterCandidate);
+        $candidateTranslation->setStructure($masterCandidate->getStructure());
+        $candidateTranslation->setMasterTranslation($masterCandidate);
 
         return $candidateTranslation;
     }
 
     /**
-     * Add translation
+     * Add translation.
      *
-     * @param Translation $translation Translation
-     *
-     * @return $this Self object
+     * @param Translation $translation
      *
      * @throws Exception Inserting a master translation is not allowed
      */
@@ -279,7 +276,6 @@ class Project
                 ->repositoryCollection
                 ->getRepositories(),
             function (Repository $repository) use ($newRepositoryLanguage, $newRepositoryDomain, $newRepositoryDirname) {
-
                 return
                     $repository->getDomain() === $newRepositoryDomain &&
                     $repository->getLanguage() === $newRepositoryLanguage &&
@@ -302,52 +298,42 @@ class Project
         }
 
         $expectedRepository->addTranslation($translation);
-
-        return $this;
     }
 
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function sort()
     {
         $this
             ->repositoryCollection
             ->sort();
-
-        return $this;
     }
 
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function save()
     {
         $this
             ->repositoryCollection
             ->save();
-
-        return $this;
     }
 
     /**
-     * Create a project from a list of paths
+     * Create a project from a list of paths.
      *
-     * @param string   $masterLanguage     Master language
-     * @param string[] $availableLanguages Available languages
-     * @param string[] $paths              List of paths
+     * @param string   $masterLanguage
+     * @param string[] $availableLanguages
+     * @param string[] $paths
      *
-     * @return self new Project instance
+     * @return Project
      */
     public static function create(
         $masterLanguage,
         array $availableLanguages,
         array $paths
-    ) {
+    ) : Project {
         $finder = new Finder();
         $finder
             ->files()

@@ -13,17 +13,17 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model\Interfaces;
 
 /**
- * Interface Sortable
+ * Interface Sortable.
  */
 interface Sortable
 {
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function sort();
 }

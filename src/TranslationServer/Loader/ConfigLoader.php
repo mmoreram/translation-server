@@ -13,12 +13,14 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Loader;
 
 use Exception;
 
 /**
- * Class ConfigLoader
+ * Class ConfigLoader.
  */
 class ConfigLoader
 {
@@ -26,14 +28,14 @@ class ConfigLoader
      * This method parses the config file, if exists, and determines the real
      * options values.
      *
-     * @param array $configValues Config values
+     * @param array $configValues
      *
-     * @return array Usable values
+     * @return array
      *
      * @throws Exception Default locale not found
      * @throws Exception Paths not found
      */
-    public function loadConfigValues(array $configValues)
+    public function loadConfigValues(array $configValues) : array
     {
         if (!isset($configValues['master_language'])) {
             throw new Exception('Your configuration file must define a master_language');

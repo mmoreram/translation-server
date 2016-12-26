@@ -13,12 +13,14 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Loader;
 
 use Mmoreram\TranslationServer\Model\Project;
 
 /**
- * Class MetricsLoader
+ * Class MetricsLoader.
  */
 class MetricsLoader
 {
@@ -33,17 +35,17 @@ class MetricsLoader
      *      'es' => 12,
      * ]
      *
-     * @param Project $project   Project
-     * @param array   $domains   Domains
-     * @param array   $languages Languages
+     * @param Project $project
+     * @param array   $domains
+     * @param array   $languages
      *
-     * @return array Metrics
+     * @return array
      */
     public function getTotalMetrics(
         Project $project,
         array $domains = [],
         array $languages = []
-    ) {
+    ) : array {
         $metrics = [];
         $masterLanguage = $project->getMasterLanguage();
         $languages = empty($languages)

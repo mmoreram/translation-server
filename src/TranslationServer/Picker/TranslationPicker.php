@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer;
 
 use Mmoreram\TranslationServer\Model\Project;
@@ -20,31 +22,32 @@ use Mmoreram\TranslationServer\Model\Repository;
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class TranslationPicker
+ * Class TranslationPicker.
  */
 class TranslationPicker
 {
     /**
      * Given a Project, a set of languages and a set of domains, return a random
-     * non filled yet Translation object
+     * non filled yet Translation object.
      *
      * If the flag revision is enabled, then only already translated elements
      * will be picked up
      *
+     * Return translation found or null if none translation is available
+     *
      * @param Project $project   Project
      * @param array   $languages Languages
      * @param array   $domains   Domains
-     * @param boolean $revision  Revision only
+     * @param bool    $revision  Revision only
      *
-     * @return Translation|false Translation found or null if none translation
-     *                           is available
+     * @return Translation|null
      */
     public function pickUpTranslation(
         Project $project,
         array $languages,
         array $domains,
-        $revision
-    ) {
+        bool $revision
+    ) : ? Translation {
         $repositories = $project
             ->getRepositories(
                 $domains,
@@ -54,7 +57,6 @@ class TranslationPicker
         $translations = array_reduce(
             $repositories,
             function (Repository $repository) use ($revision) {
-
                 $translations = $repository->getTranslations();
 
                 return array_filter(

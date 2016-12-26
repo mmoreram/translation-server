@@ -13,42 +13,44 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model\Abstracts;
 
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class TranslationAccessible
+ * Class TranslationAccessible.
  */
 abstract class TranslationAccessible
 {
     /**
-     * Get translations
+     * Get translations.
      *
      * @param array    $domains   Domains
      * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param callable $filter    Filter function
      *
-     * @return Translation[] $translations Set of translations
+     * @return Translation[]
      */
     abstract public function getTranslations(
         array $domains = [],
         array $languages = [],
         callable $filter = null
-    );
+    ) : array;
 
     /**
-     * Get available keys
+     * Get available keys.
      *
-     * @param array $domains   Domains
-     * @param array $languages Languages
+     * @param array $domains
+     * @param array $languages
      *
-     * @return array Keys
+     * @return array
      */
     public function getKeys(
         array $domains = [],
         array $languages = []
-    ) {
+    ) : array {
         return array_reduce(
             $this->getTranslations(
                 $domains,

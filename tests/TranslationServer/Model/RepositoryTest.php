@@ -13,18 +13,20 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Tests\Model;
 
 use Mmoreram\TranslationServer\Model\Translation;
 use Mmoreram\TranslationServer\Tests\Model\Abstracts\AbstractModelTest;
 
 /**
- * Class RepositoryTest
+ * Class RepositoryTest.
  */
 class RepositoryTest extends AbstractModelTest
 {
     /**
-     * Test creation by file path
+     * Test creation by file path.
      */
     public function testCreateByFilePath()
     {
@@ -36,7 +38,7 @@ class RepositoryTest extends AbstractModelTest
         $this->assertEquals('ca', $repository->getLanguage());
 
         /**
-         * @var Translation $firstTranslation
+         * @var Translation
          */
         $firstTranslation = reset($translations);
 
@@ -56,29 +58,30 @@ class RepositoryTest extends AbstractModelTest
     }
 
     /**
-     * Test sorting Repository
+     * Test sorting Repository.
      */
     public function testSort()
     {
-        $repository = $this->getRepository()->sort();
+        $repository = $this->getRepository();
+        $repository->sort();
         $translations = $repository->getTranslations();
 
         $this->assertCount(4, $translations);
 
         /**
-         * @var Translation $firstTranslation
+         * @var Translation
          */
         $firstTranslation = reset($translations);
         $this->assertEquals('example.another.subdomain.key3', $firstTranslation->getKey());
     }
 
     /**
-     * Test add translation
+     * Test add translation.
      */
     public function testAddTranslation()
     {
         $repository = $this->getRepository();
-        $translation = $this->getMock('Mmoreram\TranslationServer\Model\Translation', [], [], '', false);
+        $translation = $this->createMock('Mmoreram\TranslationServer\Model\Translation');
         $repository->addTranslation($translation);
 
         $translation

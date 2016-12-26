@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Model;
 
 use Symfony\Component\Yaml\Dumper as YamlDumper;
@@ -23,11 +25,9 @@ use Mmoreram\TranslationServer\Model\Interfaces\Saveable;
 use Mmoreram\TranslationServer\Model\Interfaces\Sortable;
 
 /**
- * Class Repository
+ * Class Repository.
  */
-class Repository
-    extends TranslationAccessible
-    implements
+class Repository extends TranslationAccessible implements
     Sortable,
     Saveable
 {
@@ -60,18 +60,18 @@ class Repository
     private $translationCollection;
 
     /**
-     * Construct
+     * Construct.
      *
-     * @param TranslationCollection $translationCollection Translation collection
-     * @param string                $path                  Path
-     * @param string                $language              Language
-     * @param string                $domain                Domain
+     * @param TranslationCollection $translationCollection
+     * @param string                $path
+     * @param string                $language
+     * @param string                $domain
      */
     private function __construct(
         TranslationCollection $translationCollection,
-        $path,
-        $language,
-        $domain
+        string $path,
+        string $language,
+        string $domain
     ) {
         $this->translationCollection = $translationCollection;
         $this->path = $path;
@@ -86,13 +86,13 @@ class Repository
     }
 
     /**
-     * Create a new repository given a file path
+     * Create a new repository given a file path.
      *
-     * @param string $filepath File path
+     * @param string $filepath
      *
-     * @return self New Repository instance
+     * @return Repository
      */
-    public static function createByFilePath($filepath)
+    public static function createByFilePath($filepath) : Repository
     {
         $filename = basename($filepath);
         list($domain, $language, $extension) = explode('.', $filename, 3);
@@ -121,13 +121,13 @@ class Repository
     }
 
     /**
-     * Create empty repository given it's path
+     * Create empty repository given it's path.
      *
-     * @param string $filepath File path
+     * @param string $filepath
      *
-     * @return self New Repository instance
+     * @return Repository
      */
-    public static function createEmptyByFilePath($filepath)
+    public static function createEmptyByFilePath(string $filepath) : Repository
     {
         $filename = basename($filepath);
         list($domain, $language, $extension) = explode('.', $filename, 3);
@@ -141,20 +141,20 @@ class Repository
     }
 
     /**
-     * Given an array, return a list of plain keys and values
+     * Given an array, return a list of plain keys and values.
      *
-     * @param array  $translations Translations
-     * @param string $language     Language
-     * @param array  $data         Data
-     * @param array  $structure    Structure
-     * @param string $prefix       Prefix value
+     * @param array  $translations
+     * @param string $language
+     * @param array  $data
+     * @param array  $structure
+     * @param string $prefix
      */
     private static function createPlainRepresentationByArray(
         array &$translations,
-        $language,
+        string $language,
         array $data,
         array $structure,
-        $prefix
+        string $prefix
     ) {
         foreach ($data as $key => $value) {
             $currentStructure = $structure;
@@ -170,10 +170,10 @@ class Repository
                     $language,
                     $value,
                     $currentStructure,
-                    $prefix.'.'.$key
+                    $prefix . '.' . $key
                 );
             } else {
-                $builtKey = trim($prefix.'.'.$key, '.');
+                $builtKey = trim($prefix . '.' . $key, '.');
                 $translation = Translation::create(
                     $builtKey,
                     $value,
@@ -192,11 +192,11 @@ class Repository
     }
 
     /**
-     * Add an element at the end of an array recursively (last child)
+     * Add an element at the end of an array recursively (last child).
      *
-     * @param array  $structure Structure
-     * @param string $key       Key
-     * @param mixed  $value     Value
+     * @param array      $structure
+     * @param string|int $key
+     * @param mixed      $value
      */
     private static function appendValueIntoStructure(
         array &$structure,
@@ -207,16 +207,14 @@ class Repository
         while (!empty($pointer)) {
             $currentKey = key($pointer);
             $pointer = &$pointer[$currentKey];
-        };
+        }
         $pointer[$key] = $value;
     }
 
     /**
-     * Add translation
+     * Add translation.
      *
-     * @param Translation $translation Translation
-     *
-     * @return $this Self object
+     * @param Translation $translation
      */
     public function addTranslation(Translation $translation)
     {
@@ -227,21 +225,21 @@ class Repository
     }
 
     /**
-     * Get Path
+     * Get Path.
      *
-     * @return string Path
+     * @return string
      */
-    public function getPath()
+    public function getPath() : string
     {
         return $this->path;
     }
 
     /**
-     * Get Path
+     * Get Path.
      *
-     * @return string Path
+     * @return string
      */
-    public function buildPath()
+    public function buildPath() : string
     {
         return self::buildRepositoryPath(
             dirname($this->path),
@@ -251,49 +249,49 @@ class Repository
     }
 
     /**
-     * Get Dirname
+     * Get Dirname.
      *
-     * @return string Dirname
+     * @return string
      */
-    public function getDirname()
+    public function getDirname() : string
     {
         return dirname($this->path);
     }
 
     /**
-     * Get Language
+     * Get Language.
      *
-     * @return string Language
+     * @return string
      */
-    public function getLanguage()
+    public function getLanguage() : string
     {
         return $this->language;
     }
 
     /**
-     * Get Domain
+     * Get Domain.
      *
-     * @return string Domain
+     * @return string
      */
-    public function getDomain()
+    public function getDomain() : string
     {
         return $this->domain;
     }
 
     /**
-     * Get translations
+     * Get translations.
      *
-     * @param array    $domains   Domains
-     * @param array    $languages Languages
-     * @param Callable $filter    Filter function
+     * @param array    $domains
+     * @param array    $languages
+     * @param callable $filter
      *
-     * @return Translation[] $translations Set of translations
+     * @return Translation[]
      */
     public function getTranslations(
         array $domains = [],
         array $languages = [],
         callable $filter = null
-    ) {
+    ) : array {
         return $this
             ->translationCollection
             ->getTranslations(
@@ -304,23 +302,17 @@ class Repository
     }
 
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function sort()
     {
         $this
             ->translationCollection
             ->sort();
-
-        return $this;
     }
 
     /**
-     * Save structure
-     *
-     * @return $this Self object
+     * Save structure.
      */
     public function save()
     {
@@ -339,24 +331,22 @@ class Repository
             $this->buildPath(),
             $yaml
         );
-
-        return $this;
     }
 
     /**
-     * Build the repository path given the basename, the domain and the language
+     * Build the repository path given the basename, the domain and the language.
      *
-     * @param string $basename Base name
-     * @param string $domain   Domain
-     * @param string $language Language
+     * @param string $basename
+     * @param string $domain
+     * @param string $language
      *
-     * @return string Repository path
+     * @return string
      */
     public static function buildRepositoryPath(
-        $basename,
-        $domain,
-        $language
-    ) {
+        string $basename,
+        string $domain,
+        string $language
+    ) : string {
         return sprintf('%s/%s.%s.yml',
             $basename,
             $domain,

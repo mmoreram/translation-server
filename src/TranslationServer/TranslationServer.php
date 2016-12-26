@@ -13,10 +13,12 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer;
 
 /**
- * Class TranslationServer
+ * Class TranslationServer.
  */
 class TranslationServer
 {

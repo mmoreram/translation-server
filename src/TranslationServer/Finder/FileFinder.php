@@ -13,23 +13,25 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Finder;
 
 use Symfony\Component\Finder\Finder;
 
 /**
- * Class FileFinder
+ * Class FileFinder.
  */
 class FileFinder
 {
     /**
-     * Find all php files by path
+     * Find all php files by path.
      *
-     * @param string $path Path
+     * @param string $path
      *
-     * @return Finder Finder iterable object with all PHP found files in path
+     * @return Finder
      */
-    public function findTranslationsFilesByPaths($path)
+    public function findTranslationsFilesByPaths(string $path) : Finder
     {
         $finder = new Finder();
         $finder

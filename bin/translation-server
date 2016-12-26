@@ -14,12 +14,12 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../src/bootstrap.php';
 
 use Mmoreram\TranslationServer\Console\Application;
 
 error_reporting(-1);
-ini_set('display_errors', 1);
+ini_set('display_errors', "1");
 
 // run the command application
 $application = new Application();

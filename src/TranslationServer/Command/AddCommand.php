@@ -13,22 +13,25 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Command;
 
 use Exception;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 use Mmoreram\TranslationServer\Command\Abstracts\AbstractTranslationServerCommand;
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class AddCommand
+ * Class AddCommand.
  */
 class AddCommand extends AbstractTranslationServerCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -40,7 +43,7 @@ class AddCommand extends AbstractTranslationServerCommand
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output
@@ -54,8 +57,8 @@ class AddCommand extends AbstractTranslationServerCommand
         $this->startCommand($output, false);
         $domains = $input->getOption('domain');
         $languages = $input->getOption('language');
-        $project = $this->createProject($input);
-        $dialog = $this->getHelper('dialog');
+        $project = $this->createProjectByInput($input);
+        $questionHelper = $this->getHelper('question');
 
         while (true) {
             $randomTranslation = $project->getRandomMissingTranslation(
@@ -74,29 +77,29 @@ class AddCommand extends AbstractTranslationServerCommand
                 break;
             }
 
-            $this
-                ->printMessage(
+            $this->printMessage(
+                $output,
+                'Trans Server',
+                'Language : ' . $randomTranslation->getLanguage()
+            );
+            $this->printMessage(
                     $output,
                     'Trans Server',
-                    'Language : '.$randomTranslation->getLanguage()
-                )
-                ->printMessage(
+                    'Key : ' . $randomTranslation->getKey()
+                );
+            $this->printMessage(
                     $output,
                     'Trans Server',
-                    'Key : '.$randomTranslation->getKey()
-                )
-                ->printMessage(
-                    $output,
-                    'Trans Server',
-                    'Original : '.$randomTranslation
+                    'Original : ' . $randomTranslation
                         ->getMasterTranslation()
                         ->getValue()
                 );
 
-            $translationValue = $dialog->ask(
+            $question = new Question('[Trans Server] Translation : ');
+            $translationValue = $questionHelper->ask(
+                $input,
                 $output,
-                '[Trans Server] Translation : ',
-                false
+                $question
             );
 
             if (false === $translationValue) {
@@ -111,9 +114,8 @@ class AddCommand extends AbstractTranslationServerCommand
             );
             $randomTranslation->setStructure($masterStructure);
 
-            $project
-                ->addTranslation($randomTranslation)
-                ->save();
+            $project->addTranslation($randomTranslation);
+            $project->save();
             $output->writeln('');
         }
 
@@ -121,10 +123,10 @@ class AddCommand extends AbstractTranslationServerCommand
     }
 
     /**
-     * Overwrite the last child of a structure for given value
+     * Overwrite the last child of a structure for given value.
      *
-     * @param array $structure Structure
-     * @param mixed $value     Value
+     * @param array $structure
+     * @param mixed $value
      */
     protected function overwriteLastValueFromStructure(
         array &$structure,
@@ -137,7 +139,7 @@ class AddCommand extends AbstractTranslationServerCommand
             $pointer = &$currentValue;
             $currentKey = key($pointer);
             $currentValue = &$pointer[$currentKey];
-        };
+        }
 
         $pointer[$currentKey] = $value;
     }

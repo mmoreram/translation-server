@@ -13,6 +13,8 @@
  * @author Marc Morera <yuhu@mmoreram.com>
  */
 
+declare(strict_types=1);
+
 namespace Mmoreram\TranslationServer\Command;
 
 use Exception;
@@ -23,12 +25,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Mmoreram\TranslationServer\Model\Translation;
 
 /**
- * Class GuessCommand
+ * Class GuessCommand.
  */
 class GuessCommand extends AddCommand
 {
     /**
-     * configure
+     * configure.
      */
     protected function configure()
     {
@@ -40,7 +42,7 @@ class GuessCommand extends AddCommand
     }
 
     /**
-     * Execute command
+     * Execute command.
      *
      * @param InputInterface  $input  Input
      * @param OutputInterface $output Output
@@ -54,7 +56,7 @@ class GuessCommand extends AddCommand
         $this->startCommand($output, false);
         $domains = $input->getOption('domain');
         $languages = $input->getOption('language');
-        $project = $this->createProject($input);
+        $project = $this->createProjectByInput($input);
 
         while (true) {
             $randomTranslation = $project->getRandomMissingTranslation(
@@ -86,24 +88,24 @@ class GuessCommand extends AddCommand
                 ->printMessage(
                     $output,
                     'Trans Server',
-                    'Language : '.$randomTranslation->getLanguage()
-                )
-                ->printMessage(
+                    'Language : ' . $randomTranslation->getLanguage()
+                );
+            $this->printMessage(
                     $output,
                     'Trans Server',
-                    'Key : '.$randomTranslation->getKey()
-                )
-                ->printMessage(
+                    'Key : ' . $randomTranslation->getKey()
+                );
+            $this->printMessage(
                     $output,
                     'Trans Server',
-                    'Original : '.$randomTranslation
+                    'Original : ' . $randomTranslation
                         ->getMasterTranslation()
                         ->getValue()
-                )
-                ->printMessage(
+                );
+            $this->printMessage(
                     $output,
                     'Trans Server',
-                    'Translation : '.$translation
+                    'Translation : ' . $translation
                 );
 
             $randomTranslation->setValue($translation);
